@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Pure JS datalist polyfill</title>
+	<link rel="stylesheet" href="style.css"/>
+<style>
+body { 
+	font: 14px/1.4 Georgia, Serif;
+}
+
+code {
+    margin: 1em;
+    display: block;
+}
+</style>
+</head>
+<body>
+
+<div class="main">
+    <p>
+        Sample code for <a href="https://github.com/fyrd/purejs-datalist-polyfill">pure JS polyfill</a>. Selecting a value will trigger a 'change' event and alert the value.
+    </p>
+    <p>
+        To work in IE8 & 9, you must start and end the datalist options with the following tags (view source for example)
+        <code>
+            &lt;!--[if lte IE 9]>&lt;select data-datalist="<b>YOUR-LIST-ID</b>">&lt;![endif]-->
+        </code>
+        
+        <code>
+            &lt;!--[if lte IE 9]>&lt;/select>&lt;![endif]-->
+        </code>
+    </p>
+    <p>
+        <label>Select a state:</label>
+        <input type="text" list="states">
+    </p>
+
+    <datalist id="states">
+<!--[if lte IE 9]><select data-datalist="states"><![endif]-->
+      <option value="Alabama">
+      <option value="Alaska">
+      <option value="Arizona">
+      <option value="Arkansas">
+      <option value="California">
+      <option value="Colorado">
+      <option value="Connecticut">
+      <option value="Delaware">
+      <option value="Florida">
+      <option value="Georgia">
+      <option value="Hawaii">
+      <option value="Idaho">
+      <option value="Illinois">
+      <option value="Indiana">
+      <option value="Iowa">
+      <option value="Kansas">
+      <option value="Kentucky">
+      <option value="Louisiana">
+      <option value="Maine">
+      <option value="Maryland">
+      <option value="Massachusetts">
+      <option value="Michigan">
+      <option value="Minnesota">
+      <option value="Mississippi">
+      <option value="Missouri">
+      <option value="Montana">
+      <option value="Nebraska">
+      <option value="Nevada">
+      <option value="New Hampshire">
+      <option value="New Jersey">
+      <option value="New Mexico">
+      <option value="New York">
+      <option value="North Carolina">
+      <option value="North Dakota">
+      <option value="Ohio">
+      <option value="Oklahoma">
+      <option value="Oregon">
+      <option value="Pennsylvania">
+      <option value="Rhode Island">
+      <option value="South Carolina">
+      <option value="South Dakota">
+      <option value="Tennessee">
+      <option value="Texas">
+      <option value="Utah">
+      <option value="Vermont">
+      <option value="Virginia">
+      <option value="Washington">
+      <option value="West Virginia">
+      <option value="Wisconsin">
+      <option value="Wyoming">
+<!--[if lte IE 9]></select><![endif]-->
+    </datalist>
+
+    <p>
+        <label>Select placeholder text:</label>
+        <input type="text" list="samples">
+    </p>
+
+    <datalist id="samples">
+    <!--[if lte IE 9]><select data-datalist="samples"><![endif]-->
+      <option value="foo">
+      <option value="bar">
+      <option value="baz">
+      <option value="lorem ipsum">
+      <option value="example.com">
+    <!--[if lte IE 9]></select><![endif]-->
+    </datalist>
+</div>
+<script>
+(function() {
+    var inputs = document.getElementsByTagName('input');
+    for( var i = 0; i < inputs.length; i++ ) {
+        var input = inputs[i];
+        input.onchange = function(evt) {
+            var elem = evt ? evt.target : window.event.srcElement;
+            alert('new value: ' + elem.value);
+        };
+    }
+}());
+</script>
+
+<script src="datalist.polyfill.min.js"></script>
+</body>
+</html>
